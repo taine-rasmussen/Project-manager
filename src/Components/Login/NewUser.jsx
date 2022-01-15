@@ -1,8 +1,10 @@
 import React from 'react'
 
-const NewUser = () => {
+const NewUser = ({setView}) => {
 
-
+ const handleViewChange = () => {
+      setView(true)
+   }
 
    return (
       <div className="user-container">
@@ -26,7 +28,7 @@ const NewUser = () => {
                <button>Create account</button>
             </form>
             <div className="form-footer">
-               <p>Already have an account? <span>sign in</span></p>
+               <p>Already have an account? <span onClick={handleViewChange}>sign in</span></p>
             </div>
          </div>
       </div>

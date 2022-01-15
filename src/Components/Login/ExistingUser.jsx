@@ -1,8 +1,13 @@
 import React from 'react'
 
-const ExistingUser = () => {
+const ExistingUser = ({setView}) => {
+
+   const handleViewChange = () => {
+      setView(false)
+   }
+
    return (
-      <div>
+      <div className="user-container">
          <div className="user-form-container">
             <div className='user-header'>
                <h1>Welcome back</h1>
@@ -19,7 +24,7 @@ const ExistingUser = () => {
                <button>Sign in</button>
             </form>
             <div className="form-footer">
-               <p>Don't have an account? <span>create one</span></p>
+               <p>Don't have an account? <span onClick={handleViewChange}>create one</span></p>
             </div>
          </div>
       </div>
