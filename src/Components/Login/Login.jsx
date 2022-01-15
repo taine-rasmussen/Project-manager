@@ -6,10 +6,12 @@ import ExistingUser from './ExistingUser'
 import NewUser from './NewUser'
 
 const Login = () => {
+
+   const [view, setView] = useState(true)
+
    return (
       <div className="login-container">
-         <NewUser />
-         <ExistingUser />
+         {view === true ? <ExistingUser setView={setView}/> : <NewUser setView={setView}/>}
       </div>
    )
 }
