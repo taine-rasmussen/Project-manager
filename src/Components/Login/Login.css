@@ -1,0 +1,32 @@
+.login-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newuser-container {
+  border: 4px solid #000;
+  height: 400px;
+  width: 500px;
+}
+
+.newuser-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.newuser-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.newuser-form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 75%;
+}
