@@ -1,0 +1,22 @@
+.landing-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  margin-top: 20vh;
+}
+
+.landing-card-container {
+  border: 3px solid #000;
+  border-radius: 5px;
+  padding: 40px;
+  width: 600px;
+  height: max-content;
+}
+
+.landing-header {
+  font-size: 2rem;
+}
+
+.landing-card {
+}
