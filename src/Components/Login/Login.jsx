@@ -7,7 +7,6 @@ import NewUser from './NewUser'
 
 const Login = () => {
 
-
    const [view, setView] = useState(true)
 
    return (

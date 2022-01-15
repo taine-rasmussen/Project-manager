@@ -9,7 +9,8 @@ const App = () => {
   return (
     <div className="App" stlye={{height: '100vh', width: '100vw'}}>
       <Routes>
-        <Route exact path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />}/>
+        <Route path="/dashboard" element={<Landing />}/>
       </Routes>
     </div>
   );
