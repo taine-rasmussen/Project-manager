@@ -1,13 +1,16 @@
 import React from 'react'
 
 const NewUser = () => {
+
+
+
    return (
-      <div className="newuser-container">
-         <div className="newuser-form-container">
-            <div className='newuser-header'>
+      <div className="user-container">
+         <div className="user-form-container">
+            <div className='user-header'>
                <h1>Create new account</h1>
             </div>
-            <form className='newuser-form'> 
+            <form className='user-form'> 
                <input 
                   type="text"
                   placeholder='Name'

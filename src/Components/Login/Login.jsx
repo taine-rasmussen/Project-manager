@@ -9,6 +9,7 @@ const Login = () => {
    return (
       <div className="login-container">
          <NewUser />
+         <ExistingUser />
       </div>
    )
 }
