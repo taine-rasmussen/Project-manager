@@ -47,6 +47,7 @@ const Landing = () => {
 
    return (
       <>
+      {<CreateProject projectData={projectData} projectCollectionRef={projectCollectionRef} setProjectData={setProjectData}/>}
       { singleProject === null ? 
             <div className="landing-container">
                <div className="landing-card-container">
@@ -54,7 +55,7 @@ const Landing = () => {
                      <h1>Select a Project</h1> 
                   </div>
                   <div className="landing-projects">
-                     {projectData[0] ? projectData[0].projects.map((proj) => {
+                     {projectData === [] ? projectData[0].projects.map((proj) => {
                         return(
                            <div className="landing-single-project" key={proj.id}>
                               <button onClick={() => {updateSingleProjData(proj.id)}}>{proj.name}</button>
@@ -68,7 +69,7 @@ const Landing = () => {
                      </Link>
                   </div>
                </div>
-         </div> : <SingleProjectDisplay singleProject={singleProject} setSingleProject={setSingleProject}/> }
+         </div> : <SingleProjectDisplay singleProject={singleProject} setSingleProject={setSingleProject} /> }
       </>
    )
 }
