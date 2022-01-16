@@ -4,7 +4,7 @@ import { getAuth, onAuthStateChanged, signOut} from "firebase/auth";
 import { auth } from '../../firebase-config'
 import { Link } from 'react-router-dom'
 import { db } from '../../firebase-config'
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, doc, getDocs } from 'firebase/firestore'
 
 
 
@@ -34,6 +34,15 @@ const Landing = () => {
          <div className="landing-card-container">
             <div className="landing-header">
                <h1>Select a Project</h1> 
+            </div>
+            <div className="landing-projects">
+               {projectData[0] ? projectData.map((proj, i) => {
+                  return(
+                     <div className="landing-single-project" key={i}>
+                        {console.log('proj test:', proj)}
+                     </div>
+                  )
+               }): 'loading'}
             </div>
             <div className="landing-card">
                <Link to='/login'>
