@@ -36,10 +36,10 @@ const Landing = () => {
                <h1>Select a Project</h1> 
             </div>
             <div className="landing-projects">
-               {projectData[0] ? projectData.map((proj, i) => {
+               {projectData[0] ? projectData[0].projects.map((proj, i) => {
                   return(
-                     <div className="landing-single-project" key={i}>
-                        {console.log('proj test:', proj)}
+                     <div className="landing-single-project" key={proj.id}>
+                        <h3>{proj.name}</h3>
                      </div>
                   )
                }): 'loading'}
