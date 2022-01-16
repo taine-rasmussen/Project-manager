@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import './Landing.css'
 import { getAuth, onAuthStateChanged, signOut} from "firebase/auth";
 import { auth } from '../../firebase-config'
 import { Link } from 'react-router-dom'
 import { db } from '../../firebase-config'
 import { collection, doc, getDocs } from 'firebase/firestore'
+import './Landing.css'
 
 // Components
 import SingleProjectDisplay from '../ProjectDisplay/SingleProjectDisplay'
+import CreateProject from './CreateProject'
 
 const Landing = () => {
 
@@ -17,11 +18,12 @@ const Landing = () => {
    const activeUser = userAuth.currentUser;
    const [singleProject, setSingleProject] = useState(null)
 
+   const projectCollectionRef = collection(db, 'projects')
+
+   // Handles user sign out / Redriects users to login page
    const logout = async () => {
       await signOut(auth);
    };
-
-   const projectCollectionRef = collection(db, 'projects')
 
    // returns data from db and updates state with it
    useEffect(() => { 
@@ -33,7 +35,7 @@ const Landing = () => {
    }, []);
 
    // Updates singleProj state with project data of project slected by user
-   const handleClick = (id) => {
+   const updateSingleProjData = (id) => {
       let data = null
       projectData[0].projects.map((proj) => {
          if(proj.id === id){
@@ -44,29 +46,29 @@ const Landing = () => {
    };
 
    return (
-      <>{singleProject === null ? 
-       <div className="landing-container">
-            <div className="landing-card-container">
-               <div className="landing-header">
-                  <h1>Select a Project</h1> 
+      <>
+      { singleProject === null ? 
+            <div className="landing-container">
+               <div className="landing-card-container">
+                  <div className="landing-header">
+                     <h1>Select a Project</h1> 
+                  </div>
+                  <div className="landing-projects">
+                     {projectData[0] ? projectData[0].projects.map((proj) => {
+                        return(
+                           <div className="landing-single-project" key={proj.id}>
+                              <button onClick={() => {updateSingleProjData(proj.id)}}>{proj.name}</button>
+                           </div>
+                        )
+                     }): 'loading...'}
+                  </div>
+                  <div className="landing-card">
+                     <Link to='/login'>
+                        <button onClick={logout}>Sign Out</button>
+                     </Link>
+                  </div>
                </div>
-               <div className="landing-projects">
-                  {projectData[0] ? projectData[0].projects.map((proj) => {
-                     return(
-                        <div className="landing-single-project" key={proj.id}>
-                           <button onClick={() => {handleClick(proj.id)}}>{proj.name}</button>
-                        </div>
-                     )
-                  }): 'loading'}
-               </div>
-               <div className="landing-card">
-                  <Link to='/login'>
-                     <button onClick={logout}>Sign Out</button>
-                  </Link>
-               </div>
-            </div>
-         </div> : <SingleProjectDisplay singleProject={singleProject} setSingleProject={setSingleProject}/>}
-        
+         </div> : <SingleProjectDisplay singleProject={singleProject} setSingleProject={setSingleProject}/> }
       </>
    )
 }
