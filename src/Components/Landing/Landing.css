@@ -36,6 +36,8 @@
 .landing-modal-content {
   width: 500px;
   background-color: #eee;
+  border-radius: 5px;
+  border: 3px solid #000;
 }
 
 .landing-modal-header,

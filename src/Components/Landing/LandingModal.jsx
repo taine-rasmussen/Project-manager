@@ -39,8 +39,19 @@ const LandingModal = (props) => {
       let cityRef = doc(db, 'projects', 'Ds7godBN1F9zeg7rpWyg') 
       setDoc(cityRef,   {[key]: {id: 1, issues: {}} }, { merge: true })
       setInput('')
-      return setData([projectData]), console.log('data test:', data)
+      return setData([projectData])
    };
+
+   const closeModal = () => {
+      const getProjects = async () => {
+         const updateData = await getDocs(projectCollectionRef);
+         setProjectData(updateData.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
+      }
+      getProjects()
+      setData(projectData)
+      setModalView(false)
+      console.log('data test:', data)
+   }
 
    if(modalView == false){
          return null
@@ -64,7 +75,7 @@ const LandingModal = (props) => {
             </div>
             <div className="landing-modal-footer">
                <button onClick={createProject}>Create</button>
-               <button onClick={() => {setModalView(false)}}>Close</button>
+               <button onClick={closeModal}>Close</button>
             </div>
          </div>   
       </div>
