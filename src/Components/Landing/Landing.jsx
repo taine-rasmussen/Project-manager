@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged, signOut} from "firebase/auth";
-import { auth } from '../../firebase-config'
-import { Link } from 'react-router-dom'
-import { db } from '../../firebase-config'
-import { collection, doc, getDocs } from 'firebase/firestore'
-import './Landing.css'
+import { auth } from '../../firebase-config';
+import { Link } from 'react-router-dom';
+import { db } from '../../firebase-config';
+import { collection, doc, getDocs } from 'firebase/firestore';
+import './Landing.css';
 
 // Components
-import SingleProjectDisplay from '../ProjectDisplay/SingleProjectDisplay'
-import CreateProject from './CreateProject'
+import SingleProjectDisplay from '../ProjectDisplay/SingleProjectDisplay';
+import LandingModal from'./LandingModal';
 
 const Landing = () => {
 
@@ -17,6 +17,7 @@ const Landing = () => {
    const userAuth = getAuth();
    const activeUser = userAuth.currentUser;
    const [singleProject, setSingleProject] = useState(null)
+   const [modalView, setModalView] = useState(false)
 
    const projectCollectionRef = collection(db, 'projects')
 
@@ -47,8 +48,8 @@ const Landing = () => {
 
    return (
       <>
-      {<CreateProject projectData={projectData} projectCollectionRef={projectCollectionRef} setProjectData={setProjectData}/>}
-      { singleProject === null ? 
+         {<LandingModal projectData={projectData} projectCollectionRef={projectCollectionRef} setProjectData={setProjectData} setModalView={setModalView} modalView={modalView}/>}
+         { singleProject === null ? 
             <div className="landing-container">
                <div className="landing-card-container">
                   <div className="landing-header">
@@ -67,6 +68,7 @@ const Landing = () => {
                      <Link to='/login'>
                         <button onClick={logout}>Sign Out</button>
                      </Link>
+                     <button onClick={() => {setModalView(true)}}>Create new Project</button>
                   </div>
                </div>
          </div> : <SingleProjectDisplay singleProject={singleProject} setSingleProject={setSingleProject} /> }

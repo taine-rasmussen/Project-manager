@@ -20,3 +20,31 @@
 
 .landing-card {
 }
+
+.landing-modal-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-modal-content {
+  width: 500px;
+  background-color: #eee;
+}
+
+.landing-modal-header,
+.landing-modal-footer {
+  padding: 10px;
+}
+
+.landing-modal-body {
+  padding: 10px;
+  border-top: 2px solid #eee;
+  border-bottom: 2px solid #eee;
+}
